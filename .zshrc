@@ -1,16 +1,50 @@
 #
 # .zshrc
 #
-# @author Jeff Geerling
+# @author Dominic Cardellino
 #
 
-# Colors.
+# General Settings
+# ---------------------------------------
+export LC_ALL=de_DE.UTF-8
+export LANG=de_DE
+export TERM=xterm-256color
 unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
+export HISTCONTROL="ignoredups" # Ignore duplicate commands in the history
+export HISTFILESIZE=10000 # Increase the maximum number of lines contained in the history file
+export HISTSIZE=10000 # Increase the maximum number of commands to remember
+export PATH="/usr/local/bin:$PATH"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Don't require escaping globbing characters in zsh.
+# ---------------------------------------
 unsetopt nomatch
+
+# Golang
+# ---------------------------------------
+if [ -d $HOME/go ]; then
+  export GOPATH="${HOME}/go"
+  export GOROOT="$(brew --prefix golang)/libexec"
+  export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+fi
+
+# Add all known keys to the SSH agent
+# ---------------------------------------
+ssh-add -A 2>/dev/null;
+
+# Export GNU CoreUtils
+# ---------------------------------------
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX=$(brew --prefix)
+  # gnubin; gnuman
+  for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+  # I actually like that man grep gives the BSD grep man page
+  #for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
+fi
 
 # Nicer prompt.
 export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
