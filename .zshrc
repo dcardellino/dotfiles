@@ -4,6 +4,11 @@
 # @author Dominic Cardellino
 #
 
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="agnoster"
+
+
 # General Settings
 # ---------------------------------------
 export LC_ALL=de_DE.UTF-8
@@ -46,17 +51,11 @@ if type brew &>/dev/null; then
   #for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
 fi
 
-# Nicer prompt.
-export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
-
 # Enable plugins.
 plugins=(ansible brew docker history-substring-search kubectl git osx pip python terraform zsh-autosuggestions)
 
 # Custom $PATH with extra locations.
 export PATH=$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
-
-# Bash-style time output.
-export TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
 
 # Include alias file (if present) containing aliases for ssh, etc.
 if [ -f ~/.aliases ]
@@ -80,11 +79,11 @@ bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
 # Git aliases.
-alias gs='git status'
-alias gc='git commit'
-alias gp='git pull --rebase'
-alias gcam='git commit -am'
-alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+# alias gs='git status'
+# alias gc='git commit'
+# alias gp='git pull --rebase'
+# alias gcam='git commit -am'
+# alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 
 # Completions.
 autoload -Uz compinit && compinit
