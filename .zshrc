@@ -16,7 +16,7 @@ fi
 # Path to oh-my-zsh installation
 export ZSH=$HOME/.oh-my-zsh
 # Set ZSH_THEME
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # Enable oh-my-zsh plugins
 plugins=(history-substring-search kubectl git zsh-autosuggestions)
 
