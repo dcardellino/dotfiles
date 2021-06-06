@@ -18,7 +18,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set ZSH_THEME
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # Enable oh-my-zsh plugins
-plugins=(history-substring-search kubectl git zsh-autosuggestions)
+plugins=(history-substring-search kubectl git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,28 +83,6 @@ then
   source ~/.aliases
 fi
 
-# Set architecture-specific brew share path.
-arch_name="$(uname -m)"
-if [ "${arch_name}" = "x86_64" ]; then
-    share_path="/usr/local/share"
-elif [ "${arch_name}" = "arm64" ]; then
-    share_path="/opt/homebrew/share"
-else
-    echo "Unknown architecture: ${arch_name}"
-fi
-
-# Allow history search via up/down keys.
-source ${share_path}/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
-
-# Git aliases.
-# alias gs='git status'
-# alias gc='git commit'
-# alias gp='git pull --rebase'
-# alias gcam='git commit -am'
-# alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
-
 # Completions.
 autoload -Uz compinit && compinit
 # Case insensitive.
@@ -139,6 +117,6 @@ knownrm() {
    sed -i '' "$1d" ~/.ssh/known_hosts
  fi
 }
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+#source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
