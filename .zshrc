@@ -4,24 +4,40 @@
 # @author Dominic Cardellino
 #
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="agnoster"
-
-
-# General Settings
+# oh-my-zsh Settings
 # ---------------------------------------
-export LC_ALL=de_DE.UTF-8
-export LANG=de_DE
+# Path to oh-my-zsh installation
+export ZSH=$HOME/.oh-my-zsh
+# Set ZSH_THEME
+ZSH_THEME="agnoster"
+# Enable oh-my-zsh plugins
+plugins=(history-substring-search kubectl git zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+# Terminal
+# ---------------------------------------
 export TERM=xterm-256color
-unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
-export HISTCONTROL="ignoredups" # Ignore duplicate commands in the history
-export HISTFILESIZE=10000 # Increase the maximum number of lines contained in the history file
-export HISTSIZE=10000 # Increase the maximum number of commands to remember
-export PATH="/usr/local/bin:$PATH"
+
+# History
+# ---------------------------------------
+export HISTCONTROL=ignoredups:erasedups
+export HISTFILESIZE=10000
+export HISTSIZE=10000
+
+# Language and Locale
+# ---------------------------------------
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US"
+
+# Miscellaneous Settings
+# ---------------------------------------
+export XDG_CONFIG_HOME="$HOME/.config"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export EDITOR="vim"
+export HOMEBREW_AUTO_UPDATE_SECS=604800
 
 # Don't require escaping globbing characters in zsh.
 # ---------------------------------------
@@ -50,9 +66,6 @@ if type brew &>/dev/null; then
   # I actually like that man grep gives the BSD grep man page
   #for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
 fi
-
-# Enable plugins.
-plugins=(ansible brew docker history-substring-search kubectl git osx pip python terraform zsh-autosuggestions)
 
 # Custom $PATH with extra locations.
 export PATH=$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
