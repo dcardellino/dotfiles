@@ -18,7 +18,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set ZSH_THEME
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # Enable oh-my-zsh plugins
-plugins=(history-substring-search kubectl git)
+plugins=(history-substring-search kubectl git terraform ansible helm docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,7 +94,7 @@ export HOMEBREW_AUTO_UPDATE_SECS=604800
 # Super useful Docker container oneshots.
 # Usage: dockrun, or dockrun [centos7|fedora27|debian9|debian8|ubuntu1404|etc.]
 dockrun() {
- docker run -it geerlingguy/docker-"${1:-ubuntu1604}"-ansible /bin/bash
+ docker run -it geerlingguy/docker-"${1:-ubuntu2004}"-ansible /bin/bash
 }
 
 # Enter a running Docker container.
