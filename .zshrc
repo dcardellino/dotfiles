@@ -18,7 +18,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set ZSH_THEME
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # Enable oh-my-zsh plugins
-plugins=(history-substring-search kubectl git terraform ansible helm docker)
+plugins=(history-substring-search kubectl git terraform ansible helm docker vault zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,6 +117,10 @@ knownrm() {
    sed -i '' "$1d" ~/.ssh/known_hosts
  fi
 }
+
+# Kubeconfig
+export KUBECONFIG=$(find ~/.kube/clusters -type f | gsed ':a;N;s/\n/:/;ba')
+
 #source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
