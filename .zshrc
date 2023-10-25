@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
-
 #
 # .zshrc
 #
@@ -18,7 +11,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set ZSH_THEME
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # Enable oh-my-zsh plugins
-plugins=(history-substring-search kubectl git terraform ansible helm docker vault zsh-autosuggestions)
+plugins=(history-substring-search kubectl git terraform ansible helm docker zsh-autosuggestions)
 
 
 # Terminal
@@ -99,16 +92,6 @@ function denter() {
  return 0
 }
 
-# Delete a given line number in the known_hosts file.
-knownrm() {
- re='^[0-9]+$'
- if ! [[ $1 =~ $re ]] ; then
-   echo "error: line number missing" >&2;
- else
-   sed -i '' "$1d" ~/.ssh/known_hosts
- fi
-}
-
 # Kubeconfig
 export KUBECONFIG=~/.kube/config
 
@@ -123,8 +106,6 @@ fi
 #source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/dcardellino/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dcardellino/Downloads/google-cloud-sdk/path.zsh.inc'; fi
