@@ -20,7 +20,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Enable oh-my-zsh plugins
 plugins=(history-substring-search kubectl git terraform ansible helm docker vault zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
 
 # Terminal
 # ---------------------------------------
@@ -43,20 +42,14 @@ export LANG="en_US"
 # ---------------------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export EDITOR="vim"
+export EDITOR="nvim"
 export HOMEBREW_AUTO_UPDATE_SECS=604800
+
 
 # Don't require escaping globbing characters in zsh.
 # ---------------------------------------
 unsetopt nomatch
 
-# Golang
-# ---------------------------------------
-if [ -d $HOME/go ]; then
-  export GOPATH="${HOME}/go"
-  export GOROOT="$(brew --prefix golang)/libexec"
-  export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-fi
 
 # Add all known keys to the SSH agent
 # ---------------------------------------
@@ -64,8 +57,6 @@ ssh-add -A 2>/dev/null;
 
 # Export GNU CoreUtils
 # ---------------------------------------
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX=$(brew --prefix)
   # gnubin; gnuman
@@ -73,9 +64,9 @@ if type brew &>/dev/null; then
   # I actually like that man grep gives the BSD grep man page
   #for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnuman; do export MANPATH=$d:$MANPATH; done
 fi
-
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 # Custom $PATH with extra locations.
-export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
+export PATH=$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$PATH
 
 # Include alias file (if present) containing aliases for ssh, etc.
 if [ -f ~/.aliases ]
@@ -119,8 +110,26 @@ knownrm() {
 }
 
 # Kubeconfig
-export KUBECONFIG=$(find ~/.kube/clusters -type f | gsed ':a;N;s/\n/:/;ba')
+export KUBECONFIG=~/.kube/config
+
+# Golang
+# ---------------------------------------
+if [ -d $HOME/go ]; then
+  export GOPATH="${HOME}/go"
+  export GOROOT="$(brew --prefix golang)/libexec"
+  export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+fi
 
 #source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dcardellino/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dcardellino/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dcardellino/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dcardellino/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+source $ZSH/oh-my-zsh.sh
